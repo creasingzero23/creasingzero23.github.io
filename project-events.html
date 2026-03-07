@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动会议拍摄 | 孙剑杰作品集</title>
+    <link rel="stylesheet" href="https://static-resources.nuwax.com/tailwind.min.css">
+    <link href="https://static-resources.nuwax.com/g-fonts.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7b2dff;
+            --dark: #0a0a0f;
+            --dark-card: #1a1a24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-tech {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.9);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Image Container */
+        .image-showcase {
+            position: relative;
+            background: var(--dark-card);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .image-showcase:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);
+        }
+
+        .image-showcase img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Title Styling */
+        .page-title {
+            background: linear-gradient(135deg, var(--primary) 0%, #fff 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: rgba(26, 26, 36, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Thank You Section */
+        .thank-you {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .thank-you h2 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="back-btn">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <span class="font-medium">返回作品集</span>
+            </a>
+            <span class="font-tech text-sm" style="color: var(--primary);">16 / 活动会议拍摄</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-24 pb-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12 animate-fade-in">
+                <span class="tag mb-4">活动纪实</span>
+                <h1 class="text-4xl md:text-6xl font-bold page-title mb-6">其他各类公司活动拍摄</h1>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    团队照拍摄、各类团建活动拍摄、活动会议记录拍摄，完整记录每一个重要时刻
+                </p>
+            </div>
+
+            <!-- Project Info -->
+            <div class="info-card p-8 mb-12 animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <p class="text-gray-500 text-sm mb-2">项目类型</p>
+                        <p class="font-medium">活动摄影 · 纪实</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm mb-2">拍摄内容</p>
+                        <p class="font-medium">团队照 · 团建 · 会议</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm mb-2">使用工具</p>
+                        <p class="font-medium">单反相机 · 闪光灯</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Gallery -->
+            <div class="image-showcase animate-fade-in" style="animation-delay: 0.3s;">
+                <img src="portfolio_images/page_16.jpg" alt="活动会议拍摄">
+            </div>
+
+            <!-- Description -->
+            <div class="info-card p-8 mt-12 animate-fade-in" style="animation-delay: 0.4s;">
+                <h3 class="font-tech text-xl mb-4" style="color: var(--primary);">项目说明</h3>
+                <p class="text-gray-300 leading-relaxed">
+                    负责各类公司活动的拍摄工作，包括团队合影、团建活动、会议记录等。
+                    用镜头记录企业的每一个重要时刻，展现团队风貌和企业文化。
+                    无论是正式的商务会议还是轻松的团建活动，都能精准捕捉精彩瞬间，
+                    为企业留下珍贵的影像资料。
+                </p>
+            </div>
+
+            <!-- Thank You -->
+            <div class="thank-you animate-fade-in" style="animation-delay: 0.5s;">
+                <h2 class="font-tech">谢谢您的浏览</h2>
+                <p class="text-gray-400 text-lg">期待与您合作</p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-center items-center mt-16 animate-fade-in" style="animation-delay: 0.6s;">
+                <a href="project-advertising.html" class="px-6 py-3 border border-cyan-500/30 rounded-full hover:bg-cyan-500/10 transition-all">
+                    ← 上一个项目
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.image-showcase, .info-card, .thank-you').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

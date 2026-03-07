@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孙剑杰 | 摄影师作品集</title>
+    <link rel="stylesheet" href="https://static-resources.nuwax.com/tailwind.min.css">
+    <link href="https://static-resources.nuwax.com/g-fonts.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7b2dff;
+            --accent: #ff2d7a;
+            --dark: #0a0a0f;
+            --dark-lighter: #12121a;
+            --dark-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #8a8aa0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .font-tech {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-gradient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-title {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+        }
+
+        .tech-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* Info Card */
+        .info-card {
+            background: rgba(26, 26, 36, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% - 16px);
+            background: linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        /* Project Card */
+        .project-card {
+            position: relative;
+            background: var(--dark-card);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.15);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Skill Bar */
+        .skill-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            transform-origin: left;
+        }
+
+        /* Contact Item */
+        .contact-item {
+            background: var(--dark-card);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.5;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        /* Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Avatar Container */
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--dark);
+            display: block;
+        }
+
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            .avatar-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient-orb orb-1"></div>
+    <div class="bg-gradient-orb orb-2"></div>
+    <div class="scanline"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-tech text-xl font-bold tracking-wider" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                SJJ.PHOTO
+            </a>
+            <div class="desktop-menu flex gap-8">
+                <a href="#about" class="nav-link font-medium">关于我</a>
+                <a href="#projects" class="nav-link font-medium">我的项目</a>
+                <a href="#contact" class="nav-link font-medium">联系方式</a>
+            </div>
+            <button class="mobile-menu text-white" id="mobileMenuBtn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Dropdown -->
+    <div class="mobile-menu-dropdown hidden fixed top-16 left-0 right-0 bg-gray-900/95 backdrop-blur-lg border-b border-cyan-500/20 z-50" id="mobileMenu">
+        <div class="px-6 py-4 flex flex-col gap-4">
+            <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors">关于我</a>
+            <a href="#projects" class="text-gray-300 hover:text-cyan-400 transition-colors">我的项目</a>
+            <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition-colors">联系方式</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative z-10 px-6">
+        <div class="text-center max-w-4xl">
+            <!-- Avatar -->
+            <div class="avatar-container mb-8 animate-slide-up" style="animation-delay: 0.1s;">
+                <img src="https://agent.nuwax.com/api/computer/static/1534237/avatar.jpg" alt="孙剑杰" class="avatar-image">
+            </div>
+            <p class="font-tech text-sm tracking-[0.3em] text-cyan-400 mb-4 animate-slide-up" style="animation-delay: 0.2s;">PORTFOLIO</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title glow-text animate-slide-up" style="animation-delay: 0.3s;">
+                孙剑杰
+            </h1>
+            <p class="text-2xl md:text-3xl text-gray-300 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
+                专业摄影师 · 视觉创作者
+            </p>
+            <div class="tech-line w-32 mx-auto mb-8 animate-slide-up" style="animation-delay: 0.5s;"></div>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto mb-12 animate-slide-up" style="animation-delay: 0.6s;">
+                8年摄影摄像工作经验，专注产品摄影、短视频创作与视觉设计
+            </p>
+            <div class="flex justify-center gap-4 animate-slide-up" style="animation-delay: 0.7s;">
+                <a href="#projects" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-medium hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+                    浏览作品
+                </a>
+                <a href="#contact" class="px-8 py-3 border border-cyan-500/50 rounded-full font-medium hover:bg-cyan-500/10 transition-all duration-300">
+                    联系我
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-xs text-gray-500 tracking-widest">SCROLL</span>
+            <div class="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center pt-2">
+                <div class="w-1.5 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative z-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16 section-title">关于我</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Personal Info -->
+                <div class="info-card rounded-2xl p-8">
+                    <h3 class="font-tech text-xl text-cyan-400 mb-6">个人信息</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                            <span class="text-gray-400">姓名</span>
+                            <span class="font-medium">孙剑杰</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                            <span class="text-gray-400">求职意向</span>
+                            <span class="font-medium text-cyan-400">摄影师</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                            <span class="text-gray-400">生日</span>
+                            <span class="font-medium">1995.8.11</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-700/50 pb-3">
+                            <span class="text-gray-400">现居</span>
+                            <span class="font-medium">浙江宁波市</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">经验</span>
+                            <span class="font-medium">8年</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="info-card rounded-2xl p-8">
+                    <h3 class="font-tech text-xl text-cyan-400 mb-6">专业技能</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">摄影摄像</span>
+                                <span class="text-cyan-400 text-sm">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Photoshop</span>
+                                <span class="text-cyan-400 text-sm">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">视频剪辑 (PR/AE/剪映)</span>
+                                <span class="text-cyan-400 text-sm">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">AI工具应用</span>
+                                <span class="text-cyan-400 text-sm">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="info-card rounded-2xl p-8 mb-8">
+                <h3 class="font-tech text-xl text-cyan-400 mb-6">教育经历</h3>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">浙江传媒学院</h4>
+                        <p class="text-gray-400">数字媒体艺术专业 · 2014.9 - 2018</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">美术基础</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">摄影技术</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">非线性编辑</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">影视摄影</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">视听语言</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm">创意短视频</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="info-card rounded-2xl p-8">
+                <h3 class="font-tech text-xl text-cyan-400 mb-6">工作经历</h3>
+                <div class="space-y-6">
+                    <div class="timeline-item">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                            <h4 class="text-lg font-bold">浙江天齐国际贸易集团有限公司</h4>
+                            <span class="text-cyan-400 text-sm font-tech">2025.6 - 2025.9</span>
+                        </div>
+                        <p class="text-gray-400">摄影师 · 负责公司各类健身及家具产品的拍摄工作</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                            <h4 class="text-lg font-bold">浙江康恩贝健康科技有限公司</h4>
+                            <span class="text-cyan-400 text-sm font-tech">2019.4 - 2025.3</span>
+                        </div>
+                        <p class="text-gray-400">摄影师 · 负责电商平台产品视频拍摄、后期剪辑、活动拍摄、品牌宣传推广</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                            <h4 class="text-lg font-bold">杭州润乙一服饰有限公司</h4>
+                            <span class="text-cyan-400 text-sm font-tech">2018.7 - 2019.3</span>
+                        </div>
+                        <p class="text-gray-400">平面摄影 · 负责公司服饰日常拍摄及修图</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                            <h4 class="text-lg font-bold">浙江森马电子商务有限公司</h4>
+                            <span class="text-cyan-400 text-sm font-tech">2018.3 - 2018.6</span>
+                        </div>
+                        <p class="text-gray-400">摄影实习 · 参与公司日常服装平面拍摄、修图与剪辑</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative z-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 section-title">我的项目</h2>
+            <p class="text-gray-400 mb-12 mt-8">专业的视觉作品，涵盖多个领域</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <a href="project-equipment.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">📷</div>
+                    <h3 class="text-xl font-bold mb-2">器械家具拍摄</h3>
+                    <p class="text-gray-400 text-sm">参与各品牌运动器械及家具的拍摄与修图工作流程，展现产品质感</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">产品摄影</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">后期修图</span>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="project-ai.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-2">AI工具应用</h3>
+                    <p class="text-gray-400 text-sm">通过AI生成人物形象、拍摄脚本、分镜稿，进行后期修图、场景搭建甚至视频生成</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-pink-500/20 text-pink-400 rounded">AI创作</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">创新</span>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="project-clothing.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">👔</div>
+                    <h3 class="text-xl font-bold mb-2">服装拍摄</h3>
+                    <p class="text-gray-400 text-sm">参与各品牌服饰箱包鞋品的拍摄与修图工作流程，突出时尚感与品质</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">时尚</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">商业</span>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="project-model.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">👤</div>
+                    <h3 class="text-xl font-bold mb-2">模特拍摄</h3>
+                    <p class="text-gray-400 text-sm">参与产品模特的拍摄工作与买家秀展示拍摄，打造吸引人的视觉效果</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">人像</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">电商</span>
+                    </div>
+                </a>
+
+                <!-- Project 5 -->
+                <a href="project-healthcare.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">💊</div>
+                    <h3 class="text-xl font-bold mb-2">医疗器械/保健品</h3>
+                    <p class="text-gray-400 text-sm">在康恩贝负责各类保健品的静物以及短视频拍摄项目，专业医疗影像</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">静物</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">视频</span>
+                    </div>
+                </a>
+
+                <!-- Project 6 -->
+                <a href="project-healthcare.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">🎬</div>
+                    <h3 class="text-xl font-bold mb-2">人物口播短视频</h3>
+                    <p class="text-gray-400 text-sm">独立负责公司各类产品的人物口播及剧情短视频拍摄与剪辑工作</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">短视频</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">剪辑</span>
+                    </div>
+                </a>
+
+                <!-- Project 7 -->
+                <a href="project-advertising.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">商业广告设计</h3>
+                    <p class="text-gray-400 text-sm">独立设计商业广告牌及学校的活动喷绘，各类奖杯及产品白底图拍摄</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">设计</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">广告</span>
+                    </div>
+                </a>
+
+                <!-- Project 8 -->
+                <a href="project-events.html" class="project-card rounded-xl p-6 cursor-pointer block">
+                    <div class="project-icon mb-4">📸</div>
+                    <h3 class="text-xl font-bold mb-2">活动会议拍摄</h3>
+                    <p class="text-gray-400 text-sm">各类团建活动拍摄、团队照拍摄、活动会议记录拍摄，完整记录每一个重要时刻</p>
+                    <div class="mt-4 flex gap-2">
+                        <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">活动</span>
+                        <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">纪实</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative z-10 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4 section-title mx-auto">联系方式</h2>
+            <p class="text-gray-400 mb-12 mt-8">期待与您合作，共创精彩视觉作品</p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <a href="tel:18658477357" class="contact-item rounded-xl p-6 flex items-center gap-4 group">
+                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-gray-400 text-sm">电话</p>
+                        <p class="font-bold text-lg">186-5847-7357</p>
+                    </div>
+                </a>
+
+                <a href="mailto:741586493@qq.com" class="contact-item rounded-xl p-6 flex items-center gap-4 group">
+                    <div class="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-gray-400 text-sm">邮箱</p>
+                        <p class="font-bold text-lg">741586493@qq.com</p>
+                    </div>
+                </a>
+
+                <div class="contact-item rounded-xl p-6 flex items-center gap-4 group">
+                    <div class="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center group-hover:bg-pink-500/20 transition-colors">
+                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-gray-400 text-sm">现居</p>
+                        <p class="font-bold text-lg">浙江宁波市</p>
+                    </div>
+                </div>
+
+                <div class="contact-item rounded-xl p-6 flex items-center gap-4 group">
+                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-gray-400 text-sm">求职意向</p>
+                        <p class="font-bold text-lg">摄影师</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <p class="font-tech text-2xl font-bold tracking-wider mb-2" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    SJJ.PHOTO
+                </p>
+                <p class="text-gray-500 text-sm">© 2026 孙剑杰 · 专业摄影师作品集</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.project-card, .info-card, .timeline-item, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Animate skill bars on scroll
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    const width = skillBar.style.width;
+                    skillBar.style.width = '0';
+                    setTimeout(() => {
+                        skillBar.style.transition = 'width 1s ease';
+                        skillBar.style.width = width;
+                    }, 100);
+                    skillObserver.unobserve(skillBar);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-progress').forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Parallax effect for orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.bg-gradient-orb');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            orbs.forEach((orb, index) => {
+                const factor = index === 0 ? 1 : -1;
+                orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+
+        // Nav background on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+
+        // Add active state to nav links
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-cyan-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-cyan-400');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
